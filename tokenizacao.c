@@ -27,17 +27,17 @@ void add_token(t_token **head, t_token **tail, t_token *token) {
 }
 
 token_type get_token_type(const char *token_str) {
-    if (strcmp(token_str, "|") == 0)
+    if (ft_strncmp(token_str, "|", 1) == 0)
         return PIPE;
-    else if (strcmp(token_str, "<<") == 0)
+    else if (ft_strncmp(token_str, "<<", 2) == 0)
         return HEREDOC;
-    else if (strcmp(token_str, ">>") == 0)
+    else if (ft_strncmp(token_str, ">>",2) == 0)
         return APPEND;
-    else if (strcmp(token_str, ">") == 0)
+    else if (ft_strncmp(token_str, ">", 1) == 0)
         return RD_OUT;
-    else if (strcmp(token_str, "<") == 0)
+    else if (ft_strncmp(token_str, "<", 1) == 0)
         return RD_IN;
-    else if (strcmp(token_str, "end") == 0)
+    else if (ft_strncmp(token_str, "\0", 1) == 0)
         return END;
     else
         return WORD;
