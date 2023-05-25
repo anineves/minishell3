@@ -1,3 +1,4 @@
+#include "minishell.h"
 void execute(t_data *shell)
 {
 	if (!shell->args[0])
