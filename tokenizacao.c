@@ -64,5 +64,5 @@ void tokenizacao(t_data *shell)
         token_str = ft_strtok(NULL, " ");
     }
     shell->tokens = head;
-    print_tokens(shell->tokens);
+    //print_tokens(shell->tokens);
 }

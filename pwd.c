@@ -1,9 +1,11 @@
 #include "minishell.h"
 
-int ft_pwd(t_data *shell)
+int ft_pwd()
 {
-	printf("%s\n", shell->cwd);
+	char	pwd[PATH_MAX];
+
+	if (getcwd(pwd, PATH_MAX) == NULL)
+		return (EXIT_FAILURE);
+	printf("%s\n", pwd);
 	return (EXIT_SUCCESS);
-
 }
-

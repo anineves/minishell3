@@ -38,9 +38,10 @@ int	main(int argc, char **argv, char **env)
 		add_history(shell->input);
 		if (verify_input(shell))
 		{
-			ft_printf("%s\n", shell->input);
+			//ft_printf("%s\n", shell->input);
 			tokenizacao(shell);
 			parsing(shell);
+			execute(shell);
 		}
 				
 		free(shell->input);

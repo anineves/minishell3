@@ -39,6 +39,7 @@ typedef enum {
     WORD       // end
 } token_type;
 
+/*
 typedef struct s_ast
 {
 	t_token			*token;
@@ -46,6 +47,7 @@ typedef struct s_ast
 	struct s_ast	*left;
 	struct s_ast	*right;
 }	t_ast;
+*/
 
 typedef struct s_env {
     char *key;
@@ -63,6 +65,7 @@ typedef struct s_data {
     char *input;
     t_token *token;
     t_token *tokens; // Lista de tokens
+    char **args;
     char **env;
     t_env *env_lst;
     char **spl_in;
@@ -74,7 +77,10 @@ void sig_handler(int sig);
 int init_data(t_data *shell, char **env);
 int verify_input(t_data *shell);
 char *ft_strtok(char *str, const char *delim);
-int ft_pwd(t_data *shell);
+int ft_pwd();
 void tokenizacao(t_data *shell);
+void parsing(t_data *shell);
+void execute(t_data *shell);
+void ft_echo(char **args);
 
 #endif
