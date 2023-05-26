@@ -13,73 +13,40 @@
 #include "minishell.h"
 #include <stdbool.h>
 
-void rmvSpaces(char *input) 
-{
+void rmvSpaces(char *str) 
+{ 
     int i;
-    int	j;
-    int k;
-    int inDQuotes = 0;
-    int inSQuotes = 0;
-    int len = strlen(input);
-    
-    i=0;
-    k= 1;
-    while (i < len) 
-    {
-        if (input[i] == '"')
-            inDQuotes = !inDQuotes;
-        if (input[i] == '\'')
-            inSQuotes = !inSQuotes;
-        input[j] = input[i];
-        j++;
-        if (input[i] == ' ' && !inDQuotes && !inSQuotes) {
-   		k = i + 1;
-            while (k < len && input[k] == ' ')
-                k++;
-            i = k - 1;
-        }
-     i++;
-    }
-    input[j] = '\0';
-}
-
-bool closed_quotes2(int single_quote, int double_quote)
-{
-	if (single_quote == 1 || double_quote == 1) 
-	{
-        	printf("unclosed quotes\n");
-        	return (0);
-    	}
-    	else
-        	return (1);
-}
-
-bool closed_quotes(t_data *shell) 
-{
-    int tam;
-    int single_quote = 0;
-    int double_quote = 0;
-    int i;
+    int j;
+    int len;
+    int inDquotes;
+    int inSquotes;
+    int space;
     
     i = 0;
-    single_quote = 0;
-    double_quote = 0;
-    tam = ft_strlen(shell->input);
-    while (i < tam) 
+    j = 0;
+    inSquotes = 0;
+    inDquotes = 0;
+    space = 0;
+    len = ft_strlen(str);
+    while (i < len) 
     {
-        if (shell->input[i] == '\'') 
+        if (str[i] == '\"')
+            inDquotes = !inDquotes;
+        else if (str[i] == '\'')
+            inSquotes = !inSquotes;
+        if ((str[i] == ' ' && !space) || inDquotes || inSquotes) 
         {
-            if (double_quote % 2 == 0)
-                single_quote = !single_quote;
+            str[j++] = str[i];
+            space = (str[i] == ' ');
         }
-        else if (shell->input[i] == '\"') 
+        else if (str[i] != ' ') 
         {
-            if (single_quote % 2 == 0) 
-                double_quote = !double_quote;
+            str[j++] = str[i];
+            space = 0;
         }
         i++;
     }
-    return (closed_quotes2(single_quote, double_quote));
+    str[j] = '\0';
 }
 
 bool last_char(t_data *shell)
@@ -139,7 +106,8 @@ int	verify_input(t_data *shell)
 	{
 		return(0);
 	}
-	//rmvSpaces(shell->input);
+	rmvSpaces(shell->input);
+	rmvQuotes(shell->input);
 	return (1);
 }
 

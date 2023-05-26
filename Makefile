@@ -8,7 +8,7 @@ LIBFT = ./libft/libft.a
 
 SRC = main.c handling_signals.c valid_input.c utils.c \
 	init_data.c pwd.c tokenizacao.c parsing.c \
-	execute.c echo.c
+	quotes.c execute.c echo.c env.c
 
 OBJ = $(SRC:.c=.o)
 

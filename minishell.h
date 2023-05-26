@@ -66,7 +66,8 @@ typedef struct s_data {
     t_token *token;
     t_token *tokens; // Lista de tokens
     char **args;
-    char **env;
+    char **copy_env;
+    int	len_env;
     t_env *env_lst;
     char **spl_in;
     char *cwd;
@@ -76,11 +77,15 @@ void init_signals(void);
 void sig_handler(int sig);
 int init_data(t_data *shell, char **env);
 int verify_input(t_data *shell);
+bool closed_quotes(t_data *shell);
+void rmvQuotes(char* str);
 char *ft_strtok(char *str, const char *delim);
-int ft_pwd();
 void tokenizacao(t_data *shell);
 void parsing(t_data *shell);
 void execute(t_data *shell);
+//Builtins
 void ft_echo(char **args);
+void ft_env(t_data *shell);
+int ft_pwd();
 
 #endif

@@ -24,14 +24,15 @@ int	init_env(t_data *shell, char **env)
 	i = 0;
 	len = 0;
 	len = size_env(env);
-	shell->env = malloc(sizeof(char *) * (len + 1));
-	if (!shell->env)
+	shell->len_env = len;
+	shell->copy_env = malloc(sizeof(char *) * (len + 1));
+	if (!shell->copy_env)
 		return (0);
 	i = 0;
 	while (env[i])
 	{
-		shell->env[i] = ft_strdup(env[i]);
-		if (!shell->env[i])
+		shell->copy_env[i] = ft_strdup(env[i]);
+		if (!shell->copy_env[i])
 			return (0);
 		i++;
 	}
