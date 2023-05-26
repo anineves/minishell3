@@ -63,13 +63,11 @@ typedef struct s_token {
 
 typedef struct s_data {
     char *input;
-    t_token *token;
     t_token *tokens; // Lista de tokens
     char **args;
     char **copy_env;
+    char *old_path;
     int	len_env;
-    t_env *env_lst;
-    char **spl_in;
     char *cwd;
 } t_data;
 
@@ -80,12 +78,16 @@ int verify_input(t_data *shell);
 bool closed_quotes(t_data *shell);
 void rmvQuotes(char* str);
 char *ft_strtok(char *str, const char *delim);
+int ft_strcmp(char *str1, char *str2);
 void tokenizacao(t_data *shell);
 void parsing(t_data *shell);
 void execute(t_data *shell);
 //Builtins
 void ft_echo(char **args);
 void ft_env(t_data *shell);
-int ft_pwd();
+void ft_pwd();
+void ft_exit(t_data *shell);
+void ft_cd(t_data *shell);
+
 
 #endif

@@ -47,8 +47,7 @@ int	init_data(t_data *shell, char **env)
 	if(!init_env(shell, env))	
 		return (0);
 	shell->input = NULL;
-	shell->spl_in = NULL;
-	shell->token = NULL;
 	shell->cwd = getcwd(NULL, 4096); 
+	shell->old_path = getenv("HOME");
 	return (1);
 }
