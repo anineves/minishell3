@@ -8,17 +8,19 @@ LIBFT = ./libft/libft.a
 
 SRC = main.c \
 	handling_signals.c \
-	valid_input.c utils.c \
-	init_data.c \
-	tokenizacao.c \
-	parsing.c \
-	quotes.c \
+	valid_input.c \
+	utils.c quotes.c \
+	create_data.c \
 	execute.c \
 	builtins/echo.c \
+	builtins/cd.c \
 	builtins/pwd.c \
 	builtins/env.c \
 	builtins/exit.c \
-	builtins/cd.c
+	builtins/export.c \
+ 	utils_split.c \
+ 	executable.c \
+	free.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,19 +1,19 @@
 #include "minishell.h"
 
-void rmvQuotes(char* str) 
+void rmvQuotes(char* str)
 {
     int i;
     int j;
     int len;
     int inDquotes;
     int inSquotes;
-    
+
     i = 0;
     j = 0;
     inSquotes = 0;
     inDquotes = 0;
     len = ft_strlen(str);
-    while (i < len) 
+    while (i < len)
     {
         if (str[i] == '\"')
             inDquotes = !inDquotes;
@@ -30,7 +30,7 @@ void rmvQuotes(char* str)
 
 bool closed_quotes2(int single_quote, int double_quote)
 {
-	if (single_quote == 1 || double_quote == 1) 
+	if (single_quote == 1 || double_quote == 1)
 	{
         	printf("unclosed quotes\n");
         	return (0);
@@ -39,27 +39,27 @@ bool closed_quotes2(int single_quote, int double_quote)
         	return (1);
 }
 
-bool closed_quotes(t_data *shell) 
+bool closed_quotes(char *input)
 {
     int tam;
     int single_quote = 0;
     int double_quote = 0;
     int i;
-    
+
     i = 0;
     single_quote = 0;
     double_quote = 0;
-    tam = ft_strlen(shell->input);
-    while (i < tam) 
+    tam = ft_strlen(input);
+    while (i < tam)
     {
-        if (shell->input[i] == '\'') 
+        if (input[i] == '\'')
         {
             if (double_quote % 2 == 0)
                 single_quote = !single_quote;
         }
-        else if (shell->input[i] == '\"') 
+        else if (input[i] == '\"')
         {
-            if (single_quote % 2 == 0) 
+            if (single_quote % 2 == 0)
                 double_quote = !double_quote;
         }
         i++;
